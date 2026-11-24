@@ -296,8 +296,26 @@ mark{background:#FFE08A;color:inherit;border-radius:3px;padding:0 1px}
 .mp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .mp-grid button{border:0;background:#ffffff22;color:#fff;border-radius:12px;padding:16px 0;font-size:15px;font-weight:700;font-family:inherit}
 .mp-grid button.sel{background:#fff;color:#1F22A3;font-weight:800}.mp-grid button.now{box-shadow:inset 0 0 0 2px #ffffff90}.mp-grid button.sel.now{box-shadow:none}
+.fcard{position:relative}
+.hist-btn{position:absolute;top:9px;right:10px;width:32px;height:32px;border:0;border-radius:10px;display:grid;place-items:center;padding:0;color:#fff;z-index:2}
+.f-m .hist-btn{background:#33228C}.f-s .hist-btn{background:#1F5A44}.f-k .hist-btn{background:#8A2468}
+.fb-btns{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.v-pill.ghost{background:none;box-shadow:inset 0 0 0 1.5px #ffffff90}
+.hl-sum{background:#ffffff1c;border-radius:12px;padding:8px 12px;font-size:13px;margin-bottom:12px}
+.hl-sum div{display:flex;justify-content:space-between;padding:3px 0}.hl-sum .neg{color:#FFC2D9}
+.hl-sum .tot{border-top:1px solid #ffffff40;margin-top:4px;padding-top:7px;font-size:14px}
+.hl-cap{font-size:11px;color:#dfe8ff;margin:0 0 4px}
+.hl-row{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:0;border-bottom:1px solid #ffffff25;background:none;color:#fff;padding:11px 0;font-family:inherit;font-size:13px}
+.hl-row:last-child{border-bottom:0}
+.hl-row .hl-d{width:50px;flex:none;color:#dfe8ff;font-size:12px}.hl-row .hl-t{flex:1;min-width:0}
+.hl-row b{white-space:nowrap}.hl-row b.neg{color:#FFC2D9}.hl-row i{font-style:normal;opacity:.7;flex:none}
+.hl-foot{display:flex;justify-content:space-between;border-top:1px solid #ffffff40;padding-top:10px;margin-top:6px;font-size:13px;color:#e4edff}.hl-foot b{color:#fff}
+.fin-pop input[type=date]{width:100%;background:#fff;color:#1c1f4a;padding:0 12px}
+.ed-btns{display:flex;gap:8px;margin-top:16px}.ed-btns .btn{flex:1}
+.fin-pop .btn.ghost{background:#ffffff25;flex:none;padding:0 18px}
+.ed-note{font-size:14px;color:#e4edff;margin:6px 0 4px;line-height:1.5}
 </style></head><body><div class="app"><header class="brand-header"><div class="brand-silhouette" aria-hidden="true"></div><div class="logo"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/XLSmart.svg" alt="XLSMART"></div><button class="profile-trigger" id="openProfileBtn" type="button" aria-label="Buka profil"><span class="profile-trigger-icon">♙</span><span class="profile-trigger-dot"></span><span class="profile-trigger-chevron">⌄</span></button></header>
-<main id="pageDash"><div class="version">Dashboard V31</div>
+<main id="pageDash"><div class="version">Dashboard V32</div>
 <div class="hello"><div><p class="greet" id="greet">Selamat pagi,</p><h1>Jalludin 👋</h1><p class="sub"><span id="quote">Hasil besar dimulai dari langkah kecil yang konsisten.</span></p></div><span class="role">Outstore Promotor</span></div>
 <section class="v-hero"><div class="v-ring"><svg viewBox="0 0 92 92" role="img" aria-label="Progres target"><circle class="rt" cx="46" cy="46" r="38"/><circle class="rp" id="targetBar" cx="46" cy="46" r="38" transform="rotate(-90 46 46)"/></svg><span class="v-pct" id="targetPercent">0%</span></div><div class="v-hero-info"><span class="v-label">Target NCA bulan ini</span><strong id="targetProgress">0 / 0</strong><small id="targetRemaining">Atur target bulanan untuk melihat pencapaian.</small><button class="v-pill" id="targetBtn" type="button">⚙ Atur target</button></div></section>
 <div class="v-total"><span>Total activation bulan ini</span><strong id="act">0</strong></div>
@@ -320,25 +338,25 @@ mark{background:#FFE08A;color:inherit;border-radius:3px;padding:0 1px}
 <textarea id="impPaste" rows="3" placeholder="Atau tempel data dari Sheets/Excel di sini"></textarea>
 <button class="btn light small" type="button" data-action="imp-parse-text">Baca teks</button>
 <div id="impPreview" class="imp-preview hidden"></div>
-<button class="btn full" id="impGoBtn" type="button" data-action="imp-go" disabled>Import</button></div></section></main><main id="pageFin" class="hidden"><div class="version">Finance V31</div>
+<button class="btn full" id="impGoBtn" type="button" data-action="imp-go" disabled>Import</button></div></section></main><main id="pageFin" class="hidden"><div class="version">Finance V32</div>
 <div class="fin-top"><h1>Finance</h1><div class="fin-month"><button type="button" data-action="fin-month" data-d="-1" aria-label="Bulan sebelumnya">‹</button><button type="button" id="finMonth" class="fin-mbtn" data-action="fin-pick" aria-label="Pilih bulan">-</button><button type="button" data-action="fin-month" data-d="1" aria-label="Bulan berikutnya">›</button></div></div>
-<section class="fin-balance"><div class="fb-top"><span>Balance</span><button class="v-pill" type="button" data-action="fin-open-income">＋ Gaji / insentif</button></div><strong id="finBalance">Rp 0</strong></section>
+<section class="fin-balance"><div class="fb-top"><span>Balance</span><div class="fb-btns"><button class="v-pill ghost" type="button" data-action="fin-detail">Detail</button><button class="v-pill" type="button" data-action="fin-open-income">＋ Gaji / insentif</button></div></div><strong id="finBalance">Rp 0</strong></section>
 <div class="fin-row">
-<section class="fcard f-m"><div class="ftitle">Modal</div>
+<section class="fcard f-m"><button class="hist-btn" type="button" data-action="fin-hist" data-sec="m" aria-label="Riwayat modal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l2 2"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></svg></button><div class="ftitle">Modal</div>
 <div class="frow"><label class="fpcs">PCS<input id="mPcs" class="digits" inputmode="numeric" enterkeyhint="next" placeholder="0" autocomplete="off"></label><label class="ffl">Kartu<input id="mCard" class="money" inputmode="numeric" enterkeyhint="next" placeholder="Rp 0" autocomplete="off"></label><label class="ffl">Jasa<input id="mSvc" class="money" inputmode="numeric" enterkeyhint="done" placeholder="Rp 0" autocomplete="off"></label></div>
 <button class="fsave" id="mSave" type="button" data-action="fin-save-m"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg> Simpan</button>
 <div class="fdate"><button type="button" class="fbtn ghost" data-action="fin-date" data-sec="m" data-d="-1" aria-label="Hari sebelumnya">‹</button><div class="fdate-label" id="mDate">-</div><button type="button" class="fbtn ghost" data-action="fin-date" data-sec="m" data-d="1" aria-label="Hari berikutnya">›</button><button type="button" class="fbtn" data-action="fin-cal" data-sec="m" aria-label="Buka kalender"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></button></div>
 <div class="fmoney" id="mTotal">Rp 0</div></section>
-<section class="fcard f-s"><div class="ftitle">Penjualan</div>
+<section class="fcard f-s"><button class="hist-btn" type="button" data-action="fin-hist" data-sec="s" aria-label="Riwayat penjualan"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l2 2"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></svg></button><div class="ftitle">Penjualan</div>
 <div class="frow"><label class="fpcs">PCS<input id="sPcs" class="digits" inputmode="numeric" enterkeyhint="next" placeholder="0" autocomplete="off"></label><label class="ffl">Total harga<input id="sPrice" class="money" inputmode="numeric" enterkeyhint="done" placeholder="Rp 0" autocomplete="off"></label></div>
 <button class="fsave" id="sSave" type="button" data-action="fin-save-s"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg> Simpan</button>
 <div class="fdate"><button type="button" class="fbtn ghost" data-action="fin-date" data-sec="s" data-d="-1" aria-label="Hari sebelumnya">‹</button><div class="fdate-label" id="sDate">-</div><button type="button" class="fbtn ghost" data-action="fin-date" data-sec="s" data-d="1" aria-label="Hari berikutnya">›</button><button type="button" class="fbtn" data-action="fin-cal" data-sec="s" aria-label="Buka kalender"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></button></div>
 <div class="fmoney" id="sTotal">Rp 0</div></section>
-<section class="fcard f-k"><div class="ftitle">Stok kartu</div>
+<section class="fcard f-k"><button class="hist-btn" type="button" data-action="fin-hist" data-sec="k" aria-label="Riwayat stok"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l2 2"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></svg></button><div class="ftitle">Stok kartu</div>
 <div class="fstock"><button type="button" data-action="fin-flow" data-kind="in"><span>In</span><b id="kIn">0</b></button><button type="button" data-action="fin-flow" data-kind="out"><span>Out</span><b id="kOut">0</b></button><button type="button" class="res" data-action="fin-cal" data-sec="k"><span>Stok</span><b id="kStock">0</b></button></div>
 <div class="fdate"><button type="button" class="fbtn ghost" data-action="fin-date" data-sec="k" data-d="-1" aria-label="Hari sebelumnya">‹</button><div class="fdate-label" id="kDate">-</div><button type="button" class="fbtn ghost" data-action="fin-date" data-sec="k" data-d="1" aria-label="Hari berikutnya">›</button><button type="button" class="fbtn" data-action="fin-cal" data-sec="k" aria-label="Buka kalender"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></button></div>
 </section></div>
-</main><main id="pageData" class="hidden"><div class="version">Data Base V31</div>
+</main><main id="pageData" class="hidden"><div class="version">Data Base V32</div>
 <div class="db-wrap"><h1 class="db-title">Data Base</h1>
 <div class="db-search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="dbQ" class="digits" inputmode="numeric" autocomplete="off" placeholder="Cari nomor" aria-label="Cari nomor"><button type="button" id="dbClear" class="hidden" data-action="db-clear" aria-label="Hapus pencarian">✕</button></div>
 <div id="dbInfo" class="db-info"></div><div id="dbBody"><div class="db-empty">Memuat...</div></div></div></main></div>
@@ -514,7 +532,7 @@ function stockAt(date){const up=r=>r.date<=date,i=sumBy(recs('modal').filter(up)
 function finBalanceNow(){const inM=r=>r.date.slice(0,7)===finPeriod,s=t=>sumBy(recs(t).filter(inM),r=>r.amount);return s('gaji')+s('insentif')+s('sale')-s('modal')}
 function resetFinDates(){const t=localDate(new Date()),d=finPeriod===t.slice(0,7)?t:lastDayOf(finPeriod);finDates={m:d,s:d,k:d}}
 function showPage(name){const map={'Dashboard':'pageDash','Finance':'pageFin','Data Base':'pageData'};Object.keys(map).forEach(k=>$(map[k]).classList.toggle('hidden',k!==name));document.querySelectorAll('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===name));document.querySelector('.app').classList.toggle('wide',name==='Finance');window.scrollTo(0,0);if(name==='Finance'){if(!finPeriod){finPeriod=localDate(new Date()).slice(0,7);resetFinDates()}renderFinance();loadFinance()}else if(name==='Data Base'){loadDatabase()}else{load()}}
-function loadFinance(){api('getFinanceAll',null,d=>{finAll=(d&&d.records)||[];renderFinance();if($('modal').classList.contains('show')){if($('calWrap'))renderCal();if($('incList'))renderIncome()}})}
+function loadFinance(){api('getFinanceAll',null,d=>{finAll=(d&&d.records)||[];renderFinance();if($('modal').classList.contains('show')){if($('calWrap'))renderCal();if($('incList'))renderIncome();if($('histWrap'))renderHist()}})}
 function renderFinance(){
  $('finMonth').textContent=monthName(finPeriod);
  const b=finBalanceNow(),el=$('finBalance');el.textContent=rp(b);el.classList.toggle('neg',b<0);
@@ -551,6 +569,7 @@ function finEnter(e){
  if(e.key!=='Enter'||e.isComposing)return;const id=e.target&&e.target.id;if(!id)return;
  if(id==='mPcs'||id==='sPcs'){e.preventDefault();if(numVal(id)<1){needInput(id,'Isi jumlah PCS dulu.');return}$(id==='mPcs'?'mCard':'sPrice').focus();return}
  if(id==='mCard'){e.preventDefault();if(numVal(id)<=0){needInput(id,'Isi harga kartu dulu.');return}$('mSvc').focus();return}
+ if(id.indexOf('ed')===0&&e.target.closest&&e.target.closest('#edForm')&&id!=='edDate'){e.preventDefault();const f=[].slice.call(document.querySelectorAll('#edForm input:not([type=date])')),i=f.indexOf(e.target);if(i>=0&&i<f.length-1)f[i+1].focus();else saveEdit();return}
  const act={mSvc:saveModalRec,sPrice:saveSaleRec,incGaji:saveGaji,incIns:addInsentif,korVal:saveKoreksi}[id];
  if(act){e.preventDefault();act()}
 }
@@ -668,6 +687,75 @@ function refreshHistory(){
  const my=++histReq;$('history').className='empty';$('history').textContent='Memuat...';
  api('getActivationsByDate',date,list=>{if(my===histReq)histRows(list||[],false)},()=>{if(my===histReq)$('history').textContent='Riwayat tidak bisa dimuat.'});
 }
+/* ===== Detail Balance, Riwayat, Edit (V32) ===== */
+let histMode=null,edId='';
+const inMonthR=r=>r.date.slice(0,7)===finPeriod;
+const byDateDesc=(a,b)=>a.date<b.date?1:a.date>b.date?-1:0;
+function openHistory(kind,sec){histMode={k:kind,sec:sec};const ttl=kind==='detail'?'Detail Balance':({m:'Riwayat Modal',s:'Riwayat Penjualan',k:'Riwayat Stok'}[sec]);showModal(ttl+' · '+monthName(finPeriod),'<div id="histWrap"></div>');renderHist()}
+function histRow(r,ctx){
+ let d=(r.type==='gaji'||r.type==='insentif')?'Bulanan':dayLabel(r.date),t='',a='',neg=false;
+ if(ctx==='detail'){
+  if(r.type==='gaji'){t='Gaji';a='+ '+rp(r.amount)}else if(r.type==='insentif'){t='Insentif';a='+ '+rp(r.amount)}
+  else if(r.type==='sale'){t='Penjualan · '+r.qty+' pcs';a='+ '+rp(r.amount)}
+  else{t='Modal · '+r.qty+' pcs';a='− '+rp(r.amount);neg=true}
+ }else if(ctx==='m'){t=r.qty+' pcs · Kartu '+rp(r.cardPrice)+' · Jasa '+rp(r.service);a=rp(r.amount)}
+ else if(ctx==='s'){t=r.qty+' pcs';a=rp(r.amount)}
+ else{
+  if(r.type==='modal'){t='In · Modal '+r.qty+' pcs';a=String(r.qty)}
+  else if(r.type==='sale'){t='Out · Penjualan '+r.qty+' pcs';a=String(r.qty);neg=true}
+  else if(r.type==='koreksi_in'){t='In · Koreksi';a=(r.qty>0?'+':'−')+Math.abs(r.qty)}
+  else{t='Out · Koreksi';a=(r.qty>0?'+':'−')+Math.abs(r.qty);neg=true}
+ }
+ return '<button type="button" class="hl-row" data-action="rec-edit" data-id="'+esc(r.id)+'"><span class="hl-d">'+d+'</span><span class="hl-t">'+esc(t)+'</span><b'+(neg?' class="neg"':'')+'>'+esc(a)+'</b><i>✎</i></button>';
+}
+function renderHist(){
+ const w=$('histWrap');if(!w||!histMode)return;let h='',list,ctx;
+ if(histMode.k==='detail'){
+  const s=t=>sumBy(recs(t).filter(inMonthR),r=>r.amount),bal=finBalanceNow();
+  h+='<div class="hl-sum"><div><span>Gaji</span><b>+ '+rp(s('gaji'))+'</b></div><div><span>Insentif</span><b>+ '+rp(s('insentif'))+'</b></div><div><span>Penjualan</span><b>+ '+rp(s('sale'))+'</b></div><div><span>Modal</span><b class="neg">− '+rp(s('modal'))+'</b></div><div class="tot"><b>Balance</b><b>'+rp(bal)+'</b></div></div><div class="hl-cap">Rincian (ketuk baris untuk edit)</div>';
+  list=finAll.filter(r=>inMonthR(r)&&['gaji','insentif','sale','modal'].indexOf(r.type)>=0);ctx='detail';
+ }else{
+  ctx=histMode.sec;
+  const types=ctx==='m'?['modal']:ctx==='s'?['sale']:['modal','sale','koreksi_in','koreksi_out'];
+  list=finAll.filter(r=>inMonthR(r)&&types.indexOf(r.type)>=0);
+ }
+ list=list.slice().sort(byDateDesc);
+ h+=list.length?list.map(r=>histRow(r,ctx)).join(''):'<div class="muted">Belum ada catatan bulan ini.</div>';
+ if(ctx==='m'||ctx==='s')h+='<div class="hl-foot"><span>Total bulan ini</span><b>'+sumBy(list,r=>r.qty)+' pcs · '+rp(sumBy(list,r=>r.amount))+'</b></div>';
+ w.innerHTML=h;
+}
+function backToList(){if(histMode)openHistory(histMode.k,histMode.sec);else closeModal()}
+function edField(label,id,cls,val,extra){return '<label for="'+id+'">'+label+'</label><input id="'+id+'" class="'+cls+'" inputmode="numeric" enterkeyhint="next" autocomplete="off" value="'+esc(val)+'"'+(extra||'')+'>'}
+function edMoney(n){return 'Rp '+Number(n||0).toLocaleString('id-ID')}
+function openEdit(id){
+ const r=finAll.find(x=>x.id===id);if(!r)return;edId=id;let f='',ttl='';
+ const dateF='<label for="edDate">Tanggal</label><input id="edDate" type="date" value="'+esc(r.date)+'">';
+ if(r.type==='modal'){ttl='Ubah modal';f=edField('PCS','edQty','digits',r.qty)+edField('Kartu','edCard','money',edMoney(r.cardPrice))+edField('Jasa','edSvc','money',edMoney(r.service))+dateF}
+ else if(r.type==='sale'){ttl='Ubah penjualan';f=edField('PCS','edQty','digits',r.qty)+edField('Total harga','edAmt','money',edMoney(r.amount))+dateF}
+ else if(r.type==='gaji'||r.type==='insentif'){ttl=r.type==='gaji'?'Ubah gaji':'Ubah insentif';f='<div class="ed-note">'+monthName(r.date.slice(0,7))+'</div>'+edField('Jumlah','edAmt','money',edMoney(r.amount))}
+ else{const k=r.type==='koreksi_in'?'In':'Out';ttl='Koreksi angka '+k;f='<div class="ed-note">'+fmtDate(r.date)+'<br>Koreksi '+k+': <b>'+(r.qty>0?'+':'−')+Math.abs(r.qty)+'</b></div><button class="btn full" type="button" data-action="ed-kor" style="margin-top:10px">Ubah angka '+k+'</button>'}
+ const save=r.type.indexOf('koreksi')===0?'':'<button class="btn" type="button" data-action="ed-save">Simpan</button>';
+ showModal(ttl,'<div class="fin-pop" id="edForm">'+f+'<div class="ed-btns">'+save+'<button class="btn ghost" type="button" data-action="ed-del">Hapus</button></div><button class="kor-clear" type="button" data-action="ed-back">Kembali</button></div>');
+}
+function saveEdit(){
+ const r=finAll.find(x=>x.id===edId);if(!r)return;const p={id:edId};
+ if(r.type==='modal'||r.type==='sale'){
+  p.date=$('edDate').value;p.qty=numVal('edQty');
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(p.date)){needInput('edDate','Isi tanggalnya dulu.');return}
+  if(p.qty<1){needInput('edQty','Isi jumlah PCS dulu.');return}
+  if(r.type==='modal'){p.cardPrice=numVal('edCard');p.service=numVal('edSvc');if(p.cardPrice<=0){needInput('edCard','Isi harga kartu dulu.');return}}
+  else{p.amount=numVal('edAmt');if(p.amount<=0){needInput('edAmt','Isi total harga dulu.');return}}
+ }else{p.amount=numVal('edAmt');if(p.amount<=0){needInput('edAmt','Isi jumlahnya dulu.');return}}
+ api('updateFinance',p,()=>{
+  if(r.type==='modal'||r.type==='sale'){r.date=p.date;r.qty=p.qty;r.cardPrice=p.cardPrice||0;r.service=p.service||0;r.amount=r.type==='modal'?p.cardPrice+p.service:p.amount}else r.amount=p.amount;
+  renderFinance();backToList();toast('Perubahan disimpan.');
+ });
+}
+function delEdit(){
+ if(!confirm('Hapus catatan ini?'))return;const id=edId;
+ api('deleteFinance',id,()=>{finAll=finAll.filter(r=>r.id!==id);renderFinance();backToList();toast('Catatan dihapus.')});
+}
+function editKor(){const r=finAll.find(x=>x.id===edId);if(!r)return;finDates.k=r.date;finPeriod=r.date.slice(0,7);renderFinance();openFlow(r.type==='koreksi_in'?'in':'out')}
 function korAuto(kind,date){const base=kind==='in'?'modal':'sale',up=r=>r.date<=date,a=sumBy(recs(base).filter(up),r=>r.qty),c=sumBy(recs('koreksi_'+kind).filter(up),r=>r.qty);return {auto:a,cor:c,total:a+c}}
 function openFlow(kind){flowKind=kind;showModal(kind==='in'?'Ubah angka In':'Ubah angka Out','<div id="korWrap" class="kor"></div>');renderKoreksi()}
 function renderKoreksi(){const w=$('korWrap');if(!w)return;const d=finDates.k,a=korAuto(flowKind,d),nm=flowKind==='in'?'In':'Out';
@@ -715,7 +803,7 @@ function dbMonth(l){
  return h+'<div class="db-legend">Merah = BAD SRC</div>';
 }
 function handleEnterKey(e){if(e.key!=='Enter')return;const el=e.target;if(el.tagName==='TEXTAREA'||el.tagName==='SELECT'||el.type==='checkbox'||el.type==='radio')return;if(el.id==='number'){e.preventDefault();addCardToDraft();return}if(el.id==='query'){e.preventDefault();runSearch(true);return}if(el.id==='targetSmartfren'){e.preventDefault();$('targetXL').focus();return}if(el.id==='targetXL'){e.preventDefault();$('targetAXIS').focus();return}if(el.id==='targetAXIS'){e.preventDefault();saveTarget();return}if(el.id==='editNumber'||el.id==='editDate'){e.preventDefault();const b=$('mb').querySelector('[data-action="save-edit"]');if(b)b.click();return}}
-function handleClick(e){const toggle=e.target.closest('[data-action=toggle-bad]');if(toggle){if(toggle.checked)badSelected.add(toggle.dataset.id);else badSelected.delete(toggle.dataset.id);updateBadSelection();return}const tab=e.target.closest('[data-mode]');if(tab){setMode(tab.dataset.mode);return}const brandBtn=e.target.closest('[data-brand]');if(brandBtn){setBrand(brandBtn.dataset.brand);return}const nav=e.target.closest('[data-nav]');if(nav){const nv=nav.dataset.nav;if(nv==='Profile'){openProfile()}else{showPage(nv)}return}const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action,id=b.dataset.id;if(a==='remove-draft'){draft.splice(Number(b.dataset.index),1);renderDraft()}else if(a==='detail')showDetail(id);else if(a==='bad')markBad(id,b.dataset.number,b.dataset.status);else if(a==='edit')editRecord(id);else if(a==='delete')deleteRecord(id);else if(a==='save-edit')saveEdit(id);else if(a==='save-target')saveTarget();else if(a==='switch-camera'){cameraFacing=cameraFacing==='environment'?'user':'environment';startLiveCamera()}else if(a==='open-bad'){badRange='today';openBadList()}else if(a==='bad-range'){badRange=b.dataset.range;renderBadList()}else if(a==='bad-restore')badRestore(id);else if(a==='bad-delete')badDelete(id);else if(a==='toggle-input'){$('inputCard').classList.toggle('collapsed')}else if(a==='date-prev')shiftDate(-1);else if(a==='date-next')shiftDate(1);else if(a==='date-today'){$('date').value=localDate(new Date());updateDateLabel()}else if(a==='fin-month')shiftMonth(Number(b.dataset.d));else if(a==='fin-date')shiftSec(b.dataset.sec,Number(b.dataset.d));else if(a==='fin-cal')openCal(b.dataset.sec);else if(a==='fin-save-m')saveModalRec();else if(a==='fin-save-s')saveSaleRec();else if(a==='fin-open-income')openIncome();else if(a==='inc-save-gaji')saveGaji();else if(a==='inc-add-ins')addInsentif();else if(a==='fin-del')finDelete(id);else if(a==='cal-prev')calShift(-1);else if(a==='cal-next')calShift(1);else if(a==='cal-pick')calPick(b.dataset.date);else if(a==='imp-toggle')$('impCard').classList.toggle('collapsed');else if(a==='imp-template')impTemplate();else if(a==='imp-pick')$('impFile').click();else if(a==='imp-parse-text')impHandleText($('impPaste').value);else if(a==='imp-go')impGo();else if(a==='fin-flow')openFlow(b.dataset.kind);else if(a==='fin-pick')openMonthPick();else if(a==='mp-year'){mpYear+=Number(b.dataset.d);renderMP()}else if(a==='mp-pick')pickMonth(b.dataset.m);else if(a==='kor-save')saveKoreksi();else if(a==='kor-clear')clearKoreksiNow();else if(a==='db-toggle'){const m=b.dataset.m,cur=String((D&&D.today)||localDate(new Date())).slice(0,7),now=dbOpen[m]!==undefined?dbOpen[m]:m===cur;dbOpen[m]=!now;renderDatabase()}else if(a==='db-clear'){$('dbQ').value='';renderDatabase();$('dbQ').focus()}else if(a==='stop-scan'||a==='close-scan'){stopScanner();closeModal()}}
+function handleClick(e){const toggle=e.target.closest('[data-action=toggle-bad]');if(toggle){if(toggle.checked)badSelected.add(toggle.dataset.id);else badSelected.delete(toggle.dataset.id);updateBadSelection();return}const tab=e.target.closest('[data-mode]');if(tab){setMode(tab.dataset.mode);return}const brandBtn=e.target.closest('[data-brand]');if(brandBtn){setBrand(brandBtn.dataset.brand);return}const nav=e.target.closest('[data-nav]');if(nav){const nv=nav.dataset.nav;if(nv==='Profile'){openProfile()}else{showPage(nv)}return}const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action,id=b.dataset.id;if(a==='remove-draft'){draft.splice(Number(b.dataset.index),1);renderDraft()}else if(a==='detail')showDetail(id);else if(a==='bad')markBad(id,b.dataset.number,b.dataset.status);else if(a==='edit')editRecord(id);else if(a==='delete')deleteRecord(id);else if(a==='save-edit')saveEdit(id);else if(a==='save-target')saveTarget();else if(a==='switch-camera'){cameraFacing=cameraFacing==='environment'?'user':'environment';startLiveCamera()}else if(a==='open-bad'){badRange='today';openBadList()}else if(a==='bad-range'){badRange=b.dataset.range;renderBadList()}else if(a==='bad-restore')badRestore(id);else if(a==='bad-delete')badDelete(id);else if(a==='toggle-input'){$('inputCard').classList.toggle('collapsed')}else if(a==='date-prev')shiftDate(-1);else if(a==='date-next')shiftDate(1);else if(a==='date-today'){$('date').value=localDate(new Date());updateDateLabel()}else if(a==='fin-month')shiftMonth(Number(b.dataset.d));else if(a==='fin-date')shiftSec(b.dataset.sec,Number(b.dataset.d));else if(a==='fin-cal')openCal(b.dataset.sec);else if(a==='fin-save-m')saveModalRec();else if(a==='fin-save-s')saveSaleRec();else if(a==='fin-open-income')openIncome();else if(a==='inc-save-gaji')saveGaji();else if(a==='inc-add-ins')addInsentif();else if(a==='fin-del')finDelete(id);else if(a==='cal-prev')calShift(-1);else if(a==='cal-next')calShift(1);else if(a==='cal-pick')calPick(b.dataset.date);else if(a==='imp-toggle')$('impCard').classList.toggle('collapsed');else if(a==='imp-template')impTemplate();else if(a==='imp-pick')$('impFile').click();else if(a==='imp-parse-text')impHandleText($('impPaste').value);else if(a==='imp-go')impGo();else if(a==='fin-flow')openFlow(b.dataset.kind);else if(a==='fin-pick')openMonthPick();else if(a==='fin-detail')openHistory('detail');else if(a==='fin-hist')openHistory('sec',b.dataset.sec);else if(a==='rec-edit')openEdit(b.dataset.id);else if(a==='ed-save')saveEdit();else if(a==='ed-del')delEdit();else if(a==='ed-back')backToList();else if(a==='ed-kor')editKor();else if(a==='mp-year'){mpYear+=Number(b.dataset.d);renderMP()}else if(a==='mp-pick')pickMonth(b.dataset.m);else if(a==='kor-save')saveKoreksi();else if(a==='kor-clear')clearKoreksiNow();else if(a==='db-toggle'){const m=b.dataset.m,cur=String((D&&D.today)||localDate(new Date())).slice(0,7),now=dbOpen[m]!==undefined?dbOpen[m]:m===cur;dbOpen[m]=!now;renderDatabase()}else if(a==='db-clear'){$('dbQ').value='';renderDatabase();$('dbQ').focus()}else if(a==='stop-scan'||a==='close-scan'){stopScanner();closeModal()}}
 function bind(){document.addEventListener('click',handleClick);$('openProfileBtn').addEventListener('click',openProfile);$('closeModalBtn').addEventListener('click',closeModal);$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});$('addNumberBtn').addEventListener('click',addCardToDraft);$('saveActivationBtn').addEventListener('click',saveBatch);$('scanBtn').addEventListener('click',startScanner);$('number').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addCardToDraft()}});$('query').addEventListener('input',runSearch);$('query').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();runSearch(true)}});$('clearBadSelection').addEventListener('click',clearBadSelection);$('processBadBtn').addEventListener('click',processBadSelection);$('targetBtn').addEventListener('click',openTarget);document.addEventListener('keydown',handleEnterKey);document.addEventListener('keydown',finEnter);document.addEventListener('input',e=>{const t=e.target;if(!t||!t.classList)return;if(t.classList.contains('money')){const d=t.value.replace(/\D/g,'');t.value=d?'Rp '+Number(d).toLocaleString('id-ID'):''}else if(t.classList.contains('digits')){t.value=t.value.replace(/\D/g,'')}});$('impFile').addEventListener('change',impFileChosen);$('dbQ').addEventListener('input',renderDatabase);$('date').addEventListener('change',updateDateLabel);window.addEventListener('pagehide',stopScanner)}
 window.addEventListener('error',e=>toast('Kesalahan JavaScript: '+(e.message||'tidak diketahui')));window.addEventListener('unhandledrejection',e=>toast('Kesalahan aplikasi: '+(e.reason&&e.reason.message?e.reason.message:String(e.reason))));
 document.addEventListener('DOMContentLoaded',()=>{try{bind();init()}catch(e){toast('Inisialisasi gagal: '+e.message)}});
